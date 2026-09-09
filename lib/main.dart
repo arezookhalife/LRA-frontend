@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'screens/login_screen.dart';
+import 'screens/dashboard_screen.dart';
 
 void main() {
   runApp(
@@ -39,23 +40,7 @@ class AuthWrapper extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context);
 
     if (authProvider.isAuthenticated) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('LRA Dashboard'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.logout),
-              onPressed: () => authProvider.logout(),
-            ),
-          ],
-        ),
-        body: const Center(
-          child: Text(
-            'Welcome to Life Recovery Assistant!',
-            style: TextStyle(fontSize: 18),
-          ),
-        ),
-      );
+      return const DashboardScreen();
     }
 
     return const LoginScreen();
